@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 
 import bean.Utilisateur;
 
@@ -24,13 +23,6 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 
         Utilisateur utilisateur = new Utilisateur();
 
-        int id = 0;
-        String login = null;
-        String e_mail = null;
-        String mot_de_passe = null;
-        String nom = null;
-        Timestamp date_creation;
-
         ////////////////////////
 
         Connection connection = null;
@@ -46,24 +38,12 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
             resultSet = preparedStatement.executeQuery();
 
             while ( resultSet.next() ) {
-                id = resultSet.getInt( "id" );
-                System.out.println( resultSet.getString( "login" ) );
-                login = resultSet.getString( "login" );
+
+                utilisateur = map( resultSet );
+
                 System.out.println( resultSet.getString( "email" ) );
-                e_mail = resultSet.getString( "email" );
-                System.out.println( resultSet.getString( "mot_de_passe" ) );
-                mot_de_passe = resultSet.getString( "mot_de_passe" );
-                System.out.println( resultSet.getString( "nom" ) );
-                nom = resultSet.getString( "nom" );
-                System.out.println( resultSet.getTimestamp( "date_creation" ) );
-                date_creation = resultSet.getTimestamp( "date_creation" );
 
             }
-            utilisateur.setId( id );
-            utilisateur.setLogin( login );
-            utilisateur.setMot_de_passe( mot_de_passe );
-            utilisateur.setNom( nom );
-            utilisateur.setEmail( e_mail );
 
         } catch ( SQLException e ) {
             // TODO Auto-generated catch block
@@ -79,6 +59,18 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
     public void creerUtilisateur( Utilisateur utilisateur ) throws DAOException {
         // TODO Auto-generated method stub
 
+    }
+
+    public static Utilisateur map( ResultSet resultset ) throws SQLException {
+        Utilisateur utilisateur = new Utilisateur();
+        utilisateur.setId( resultset.getInt( "id" ) );
+        utilisateur.setLogin( resultset.getString( "login" ) );
+        utilisateur.setEmail( resultset.getString( "email" ) );
+        utilisateur.setMot_de_passe( resultset.getString( "mot_de_passe" ) );
+        utilisateur.setNom( resultset.getString( "nom" ) );
+        utilisateur.setDate_creation( resultset.getTimestamp( "date_creation" ) );
+
+        return utilisateur;
     }
 
 }
