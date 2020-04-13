@@ -11,7 +11,8 @@ import bean.Utilisateur;
 
 public class UtilisateurDaoImpl implements UtilisateurDao {
 
-    private final static String SQL_SELECT_PAR_MAIL = "select * from utilisateur where utilisateur.email = ?";
+    private final static String SQL_SELECT_PAR_MAIL    = "select * from utilisateur where utilisateur.email = ?";
+    private final static String SQL_INSERT_UTILISATEUR = "insert into utilisateur (login, email, mot_de_passe, nom, date_creation) values (?,?,?,?,now())";
     private DAOFactory          daoFactory;
 
     public UtilisateurDaoImpl( DAOFactory daoFactory ) {
@@ -58,6 +59,40 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
     @Override
     public void creerUtilisateur( Utilisateur utilisateur ) throws DAOException {
         // TODO Auto-generated method stub
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSetPourStockerIdAutoGeneres = null;
+        Object[] utilisateurAttributs = { utilisateur.getLogin(), utilisateur.getEmail(), utilisateur.getMot_de_passe(),
+                utilisateur.getNom() };
+
+        try {
+
+            connection = daoFactory.getConnection();
+            preparedStatement = DAOUtilitaire.initialisaterRequetePreparee( connection, SQL_INSERT_UTILISATEUR, true,
+                    utilisateurAttributs );
+
+            int nombreDeLigneInserees = preparedStatement.executeUpdate();
+            if ( nombreDeLigneInserees == 0 ) {
+                throw new DAOException( "échec de l'insert" );
+            }
+            resultSetPourStockerIdAutoGeneres = preparedStatement.getGeneratedKeys();
+
+            if ( resultSetPourStockerIdAutoGeneres.next() ) {
+                utilisateur.setId( resultSetPourStockerIdAutoGeneres.getInt( 1 ) );
+            }
+
+            else {
+                throw new DAOException( "aucun id unique trouvé car par de lignes insérées" );
+            }
+
+        } catch ( SQLException e ) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally {
+            fermeturesSilencieuses( resultSetPourStockerIdAutoGeneres, preparedStatement, connection );
+
+        }
 
     }
 

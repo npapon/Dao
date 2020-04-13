@@ -1,4 +1,5 @@
 package bean;
+
 import java.sql.Timestamp;
 
 public class Utilisateur {
@@ -56,6 +57,10 @@ public class Utilisateur {
 
     public void setDate_creation( Timestamp date_creation ) {
         this.date_creation = date_creation;
+    }
+
+    public String toString() {
+        return "utilisateur id " + this.getId() + " utilisateur login " + this.getLogin();
     }
 
 }
