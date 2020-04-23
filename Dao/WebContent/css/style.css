@@ -1,0 +1,149 @@
+/* Général ------------------------------------------------------------------------------------- */
+body, p, legend, label, input {
+	font: normal 8pt verdana, helvetica, sans-serif;
+}
+
+/* Forms --------------------------------------------------------------------------------------- */
+fieldset {
+	padding: 10px;
+	border: 1px #0568CD solid;
+	margin: 10px;
+}
+
+legend {
+	font-weight: bold;
+	color: #0568CD;
+}
+
+form label {
+	float: left;
+	width: 200px;
+	margin: 3px 0px 0px 0px;
+}
+
+form input {
+	margin: 3px 3px 0px 0px;
+	border: 1px #999 solid;
+}
+
+form input.sansLabel {
+	margin-left: 200px;
+}
+
+.info {
+	font-style: italic;
+	color: #E8A22B;
+}
+
+textarea
+{
+	width:auto;
+	height:200px;
+}
+
+/* Styles et couleurs -------------------------------------------------------------------------- */
+.requis {
+	color: #c00;
+}
+
+.erreur {
+	color: #900;
+}
+
+.succes {
+	color: #090;
+}
+
+.info {
+	font-style: italic;
+	color: #E8A22B;
+}
+
+.erreurjs {
+	border: 1px solid #8000ff;
+	padding: 10px;
+	margin: 10px;
+	color: #8000ff;
+}
+
+.erreurjs legend {
+	color: #8000ff;
+}
+
+li[color="red"] {
+	color: red;
+}
+
+li[color="green"] {
+	color: green;
+}
+
+div[color="red"] {
+	color: red;
+}
+
+div[color="green"] {
+	color: green;
+}
+/* Blocs constituants -------------------------------------------------------------------------- */
+div#menu {
+	border: 1px solid #0568CD;
+	padding: 10px;
+	margin: 10px;
+}
+
+div#corps {
+	margin: 10px;
+}
+
+div#footer {
+	border: 1px solid #008000;
+	padding: 10px;
+	margin: 10px;
+}
+
+div#header {
+	border: 1px solid #008000;
+	padding: 10px;
+	margin: 10px;
+	text-align: right;
+}
+
+/* Images -------------------------------------------------------------------------- */
+img[title="deconnexion"] {
+	border: 1px solid #00ff00;
+	width: 50px;
+	height: 50px;
+}
+
+img.imageprofil {
+	height: 100px;
+	width: auto;
+}
+
+/* tableau -------------------------------------------------------------------------- */
+table {
+	border-collapse: collapse;
+}
+
+td, th, caption {
+	border: 1px solid black;
+}
+
+caption {
+	color: blue;
+	font-weight: bold;
+	font: normal 10pt verdana, helvetica, sans-serif;
+	
+
+}
+
+td, th {
+	font: normal 8pt verdana, helvetica, sans-serif;
+	width:50%;
+}
+
+/* bouton -------------------------------------------------------------------------- */
+.supprimer {
+	text-align: center;
+}

@@ -10,11 +10,6 @@ public class Main {
         DAOFactory daoFactory = DAOFactory.getInstance();
         Utilisateur utilisateur = new Utilisateur();
 
-        utilisateur.setEmail( "nigos111@live.fr" );
-        utilisateur.setLogin( "npapoune" );
-        utilisateur.setMot_de_passe( "caca" );
-        utilisateur.setNom( "papounet" );
-
         // on instancie utilisateurDaoImpl avec le daoFactory en paramètre qui a
         // les méthodes CRUD
         UtilisateurDao utilisateurDao = daoFactory.getUtilisateurDao();
@@ -24,10 +19,10 @@ public class Main {
         System.out.println( "mail recherché  " + utilisateur.getEmail() );
         utilisateur = new Utilisateur();
 
-        utilisateur.setEmail( "help3@live.fr" );
-        utilisateur.setLogin( "help3" );
+        utilisateur.setEmail( "help10@live.fr" );
+        utilisateur.setLogin( "help10" );
         utilisateur.setMot_de_passe( "caca" );
-        utilisateur.setNom( "help3" );
+        utilisateur.setNom( "help10" );
 
         utilisateurDao.creerUtilisateur( utilisateur );
 

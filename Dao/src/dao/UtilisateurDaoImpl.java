@@ -8,12 +8,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import bean.Utilisateur;
+import constante.MessagesErreur;
+import constante.RequetesSql;
+import constante.UtilisateurTableNomsColonnes;
 
 public class UtilisateurDaoImpl implements UtilisateurDao {
 
-    private final static String SQL_SELECT_PAR_MAIL    = "select * from utilisateur where utilisateur.email = ?";
-    private final static String SQL_INSERT_UTILISATEUR = "insert into utilisateur (login, email, mot_de_passe, nom, date_creation) values (?,?,?,?,now())";
-    private DAOFactory          daoFactory;
+    private DAOFactory daoFactory;
 
     public UtilisateurDaoImpl( DAOFactory daoFactory ) {
         this.daoFactory = daoFactory;
@@ -22,9 +23,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
     @Override
     public Utilisateur rechercherUtilisateur( String email ) throws DAOException {
 
-        Utilisateur utilisateur = new Utilisateur();
-
-        ////////////////////////
+        Utilisateur utilisateur = null;
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -33,7 +32,8 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
         try {
             connection = daoFactory.getConnection();
 
-            preparedStatement = DAOUtilitaire.initialisaterRequetePreparee( connection, SQL_SELECT_PAR_MAIL, false,
+            preparedStatement = DAOUtilitaire.initialisaterRequetePreparee( connection, RequetesSql.UTILISATEUR_SELECT_PAR_MAIL,
+                    false,
                     email );
 
             resultSet = preparedStatement.executeQuery();
@@ -41,8 +41,6 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
             while ( resultSet.next() ) {
 
                 utilisateur = map( resultSet );
-
-                System.out.println( resultSet.getString( "email" ) );
 
             }
 
@@ -69,12 +67,13 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
         try {
 
             connection = daoFactory.getConnection();
-            preparedStatement = DAOUtilitaire.initialisaterRequetePreparee( connection, SQL_INSERT_UTILISATEUR, true,
+            preparedStatement = DAOUtilitaire.initialisaterRequetePreparee( connection, RequetesSql.UTILISATEUR_INSERT,
+                    true,
                     utilisateurAttributs );
 
             int nombreDeLigneInserees = preparedStatement.executeUpdate();
             if ( nombreDeLigneInserees == 0 ) {
-                throw new DAOException( "échec de l'insert" );
+                throw new DAOException( MessagesErreur.ECHEC_INSERT_UTILISATEUR );
             }
             resultSetPourStockerIdAutoGeneres = preparedStatement.getGeneratedKeys();
 
@@ -83,7 +82,8 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
             }
 
             else {
-                throw new DAOException( "aucun id unique trouvé car par de lignes insérées" );
+                throw new DAOException(
+                        MessagesErreur.ECHEC_RECUPERATION_ID_UTILISATEUR );
             }
 
         } catch ( SQLException e ) {
@@ -98,12 +98,12 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 
     public static Utilisateur map( ResultSet resultset ) throws SQLException {
         Utilisateur utilisateur = new Utilisateur();
-        utilisateur.setId( resultset.getInt( "id" ) );
-        utilisateur.setLogin( resultset.getString( "login" ) );
-        utilisateur.setEmail( resultset.getString( "email" ) );
-        utilisateur.setMot_de_passe( resultset.getString( "mot_de_passe" ) );
-        utilisateur.setNom( resultset.getString( "nom" ) );
-        utilisateur.setDate_creation( resultset.getTimestamp( "date_creation" ) );
+        utilisateur.setId( resultset.getInt( UtilisateurTableNomsColonnes.ID ) );
+        utilisateur.setLogin( resultset.getString( UtilisateurTableNomsColonnes.LOGIN ) );
+        utilisateur.setEmail( resultset.getString( UtilisateurTableNomsColonnes.EMAIL ) );
+        utilisateur.setMot_de_passe( resultset.getString( UtilisateurTableNomsColonnes.EMAIL ) );
+        utilisateur.setNom( resultset.getString( UtilisateurTableNomsColonnes.EMAIL ) );
+        utilisateur.setDate_creation( resultset.getTimestamp( UtilisateurTableNomsColonnes.DATE_CREATION ) );
 
         return utilisateur;
     }
