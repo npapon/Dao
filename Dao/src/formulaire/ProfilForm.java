@@ -23,6 +23,7 @@ import constante.MessagesErreur;
 import constante.ParametresFormulaire;
 import constante.Tampon;
 import eu.medsea.mimeutil.MimeUtil;
+import exception.FormValidationException;
 
 public class ProfilForm {
     List<String> erreurs = new ArrayList<String>();
@@ -30,20 +31,13 @@ public class ProfilForm {
     public Image
 
             enregistrerImageProfil( String chemin, HttpServletRequest request ) throws Exception {
-        /* Prépare les flux. */
+        // recuperation email
 
         Image image = new Image();
-        HttpSession session = request.getSession();
-        Utilisateur utilisateur = (Utilisateur) session.getAttribute( AttributsServlet.UTILISATEUR );
-        String email = utilisateur.getEmail();
-        image.setEmail( email );
-        System.out.print( "email récupéré à persisiter dans table image ²& " + email );
         Part part = chargerImageProfil( request );
-        String libelleImage = this.recupererNomImage( part );
-        image.setLibelle( libelleImage );
-        validationFormatImage( part );
+        affecterEmail( image, request );
+        String libelleImage = affecterLibelleImage( part, image );
 
-        System.out.println( "Fichier enregistré ici : " + chemin + "/" + libelleImage );
         BufferedInputStream entree = null;
         BufferedOutputStream sortie = null;
         try {
@@ -84,6 +78,9 @@ public class ProfilForm {
             } catch ( IOException ignore ) {
             }
         }
+        System.out.println( "Fichier enregistré ici : " + chemin + "/" + libelleImage );
+
+        System.out.println( "image " + image.getEmail() + image.getLibelle() );
         return image;
     }
 
@@ -161,6 +158,39 @@ public class ProfilForm {
             }
         }
         return nomImage;
+
+    }
+
+    public void affecterEmail( Image image, HttpServletRequest request ) {
+
+        HttpSession session = request.getSession();
+        Utilisateur utilisateur = (Utilisateur) session.getAttribute( AttributsServlet.UTILISATEUR );
+        String email = utilisateur.getEmail();
+
+        System.out.println( "email récupéré à persisiter dans table image " + email );
+        if ( email.isEmpty() ) {
+            try {
+                throw ( new FormValidationException( MessagesErreur.EMAIL_ABSENT ) );
+            } catch ( FormValidationException e ) {
+                {
+                    System.out.println( e.getMessage() );
+                    erreurs.add(
+                            e.getMessage() );
+                }
+            }
+        } else {
+            image.setEmail( email );
+        }
+    }
+
+    public String affecterLibelleImage( Part part, Image image ) throws Exception {
+
+        String libelleImage = this.recupererNomImage( part );
+
+        validationFormatImage( part );
+
+        image.setLibelle( libelleImage );
+        return libelleImage;
 
     }
 

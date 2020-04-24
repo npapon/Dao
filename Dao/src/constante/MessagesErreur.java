@@ -4,11 +4,14 @@ public class MessagesErreur {
     public static final String FICHIER_PROPRIETE_INTROUVABLE                = "Le fichier propriété est introuvable";
     public static final String DRIVER_INTROUVABLE                           = "Driver introuvable dans le classpath ";
     public static final String ECHEC_INSERT_UTILISATEUR                     = "L'utilisateur n'a pas été inséré en base";
+    public static final String ECHEC_INSERT_IMAGEPROFIL                     = "L'image de profil n'a pas été inséré en base";
     public static final String ECHEC_RECUPERATION_ID_UTILISATEUR            = "aucun id unique pour l'utilisateur de trouvé car aucune ligne n'a été insérée pour l'utilisateur en base";
+    public static final String ECHEC_RECUPERATION_ID_IMAGEPROFIL            = "aucun id unique pour l'image de profil de trouvé car aucune ligne n'a été insérée pour l'utilisateur en base";
     public static final String LOGIN_TROP_COURT                             = "Le login doit faire plus de 3 caractères";
     public static final String NOM_TROP_COURT                               = "Le nom doit faire plus de 3 caractères";
     public static final String MOTDEPASSE_TROP_COURT                        = "Le mot de passe doit faire plus de 3 caractères";
     public static final String EMAIL_FORMAT_INVALIDE                        = "Le format de l'email n'est pas valide";
+    public static final String EMAIL_ABSENT                                 = "Impossible de récupérer l'email dans la session de l'utilisateur";
     public static final String EMAIL_DEJA_PRIS                              = "L'email est déjà pris";
     public static final String CONFIRMATION_MOTPASSE_INCORRECTE             = "Le mot de passe confirmé est différent";
     public static final String CREATION_UTILISATEUR_KO_RAISON_FONCTIONNELLE = "Echec de la création en base pour une raison fonctionnelle";

@@ -14,31 +14,31 @@
                 <br/>
                
                 <label for="login">Login <span class="requis">*</span></label>
-                <input type="text" id="login" name="login" value="" size="20" maxlength="60" />
+                <input type="text" id="login" name="login" value="" size="32" maxlength="32" />
                 <div class="erreur" id="erreurlogin"></div>
                 <br />
                 <br />
                 
                  <label for="nom">Nom <span class="requis">*</span></label>
-                <input type="text" id="nom" name="nom" value="" size="20" maxlength="60" />
+                <input type="text" id="nom" name="nom" value="" size="20" maxlength="20" />
                 <div class="erreur" id="erreurnom"></div>
                 <br />
                 <br />
                 
                 <label for="motdepasse">Mot de passe <span class="requis">*</span></label>
-                <input type="password" id="motdepasse" name="motdepasse" value="" size="20" maxlength="20" />
+                <input type="password" id="motdepasse" name="motdepasse" value="" size="56" maxlength="56" />
                  <div class="erreur" id="erreurmotdepasse"></div>      
                 <br />
                 <br />
                 
                     <label for="confirmation">Confirmer le mot de passe <span class="requis">*</span></label>
-                <input type="password" id="confirmation" name="confirmation" value="" size="20" maxlength="20" />
+                <input type="password" id="confirmation" name="confirmation" value="" size="56" maxlength="56" />
                  <div class="erreur" id="erreurconfirmation"></div>      
                 <br />
                 <br />
                 
                    <label for="email">Email<span class="requis">*</span></label>
-                <input type="text" id="email" name="email" value="" size="20" maxlength="20" />
+                <input type="text" id="email" name="email" value="" size="60" maxlength="60" />
                  <div class="erreur" id="erreuremail"></div>      
                 <br />
                 <br />
