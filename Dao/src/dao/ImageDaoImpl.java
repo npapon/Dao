@@ -27,7 +27,7 @@ public class ImageDaoImpl implements ImageDao {
 
         try {
             connexion = daoFactory.getConnection();
-
+            System.out.println( "email pas ok " + email );
             preparedStatement = DAOUtilitaire.initialisaterRequetePreparee( connexion, RequetesSql.IMAGEPROFIL_SELECT_PAR_MAIL,
                     false,
                     email );
@@ -63,7 +63,7 @@ public class ImageDaoImpl implements ImageDao {
         Connection connexion = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSetPourStockerIdAutoGeneres = null;
-        Object[] imageAttributs = { image.getEmail(), image.getLibelle(), image.getDate_creation() };
+        Object[] imageAttributs = { image.getLibelle(), image.getEmail() };
 
         try {
             connexion = daoFactory.getConnection();

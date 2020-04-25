@@ -46,16 +46,16 @@ public class InscriptionForm {
             affecterConfirmationMotDePasse( motdepasse, confirmationmotdepasse, utilisateur );
 
             if ( erreurs.isEmpty() ) {
-                creationAutorisee = MessagesSucces.UTILISATEUR_CREE_EN_BASE;
+                creationAutorisee = MessagesSucces.UTILISATEUR_CREE;
                 utilisateurDao.creerUtilisateur( utilisateur );
                 System.out.println( creationAutorisee );
             } else {
-                creationAutorisee = MessagesErreur.CREATION_UTILISATEUR_KO_RAISON_FONCTIONNELLE;
+                creationAutorisee = MessagesErreur.CREATION_UTILISATEUR_KO;
                 System.out.println( creationAutorisee );
             }
 
         } catch ( DAOException e ) {
-            creationAutorisee = MessagesErreur.CREATION_UTILISATEUR_KO_RAISON_TECHNIQUE;
+            creationAutorisee = MessagesErreur.CREATION_UTILISATEUR_KO_RAISON_BDD;
             System.out.println( creationAutorisee );
             e.printStackTrace();
 

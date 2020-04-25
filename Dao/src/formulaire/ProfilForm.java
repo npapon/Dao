@@ -20,67 +20,50 @@ import bean.Image;
 import bean.Utilisateur;
 import constante.AttributsServlet;
 import constante.MessagesErreur;
+import constante.MessagesSucces;
 import constante.ParametresFormulaire;
 import constante.Tampon;
+import dao.DAOException;
+import dao.ImageDao;
 import eu.medsea.mimeutil.MimeUtil;
 import exception.FormValidationException;
 
 public class ProfilForm {
-    List<String> erreurs = new ArrayList<String>();
+    List<String>     erreurs = new ArrayList<String>();
+    private ImageDao imageDao;
+    private String   creationAutorisee;
+
+    public ProfilForm( ImageDao imageDao ) {
+        this.imageDao = imageDao;
+    }
 
     public Image
 
-            enregistrerImageProfil( String chemin, HttpServletRequest request ) throws Exception {
+            creerImageProfil( String chemin, HttpServletRequest request ) throws Exception {
         // recuperation email
 
         Image image = new Image();
-        Part part = chargerImageProfil( request );
-        affecterEmail( image, request );
-        String libelleImage = affecterLibelleImage( part, image );
-
-        BufferedInputStream entree = null;
-        BufferedOutputStream sortie = null;
         try {
-            entree = new BufferedInputStream( part.getInputStream(), Tampon.TAILLE_TAMPON_10240 );
+            Part part = chargerImageProfil( request );
+            affecterEmail( image, request );
+            String libelleImage = affecterLibelleImage( part, image );
 
-            sortie = new BufferedOutputStream( new FileOutputStream( new File( chemin + "/" + libelleImage ) ),
-                    Tampon.TAILLE_TAMPON_10240 );
-
-            /*
-             * Lit le fichier reçu et écrit son contenu dans un fichier sur le
-             * disque.
-             */
-            byte[] tampon = new byte[Tampon.TAILLE_TAMPON_10240];
-            int longueur;
-            while ( ( longueur = entree.read( tampon ) ) > 0 ) {
-                sortie.write( tampon, 0, longueur );
+            if ( erreurs.isEmpty() ) {
+                creationAutorisee = MessagesSucces.IMAGEPROFIL_CREE;
+                enregistrerImageProfil( part, chemin, libelleImage );
+                imageDao.creerImage( image );
+                System.out.println( creationAutorisee );
+            } else {
+                creationAutorisee = MessagesErreur.CREATION_IMAGEPROFIL_KO;
+                System.out.println( creationAutorisee );
             }
 
-        }
-
-        catch ( FileNotFoundException e ) {
-            e.printStackTrace();
-
-        }
-
-        catch ( IOException e ) {
-            // TODO Auto-generated catch block
+            System.out.println( "image " + image.getEmail() + image.getLibelle() );
+        } catch ( DAOException e ) {
+            creationAutorisee = MessagesErreur.CREATION_IMAGEPROFIL_KO_RAISON_BDD;
+            System.out.println( creationAutorisee );
             e.printStackTrace();
         }
-
-        finally {
-            try {
-                sortie.close();
-            } catch ( IOException ignore ) {
-            }
-            try {
-                entree.close();
-            } catch ( IOException ignore ) {
-            }
-        }
-        System.out.println( "Fichier enregistré ici : " + chemin + "/" + libelleImage );
-
-        System.out.println( "image " + image.getEmail() + image.getLibelle() );
         return image;
     }
 
@@ -221,6 +204,51 @@ public class ProfilForm {
             throw new Exception( MessagesErreur.FICHIER_PAS_UNE_IMAGE );
 
         }
+
+    }
+
+    private void enregistrerImageProfil( Part part, String chemin, String libelleImage ) {
+        BufferedInputStream entree = null;
+        BufferedOutputStream sortie = null;
+        try {
+            entree = new BufferedInputStream( part.getInputStream(), Tampon.TAILLE_TAMPON_10240 );
+
+            sortie = new BufferedOutputStream( new FileOutputStream( new File( chemin + "/" + libelleImage ) ),
+                    Tampon.TAILLE_TAMPON_10240 );
+
+            /*
+             * Lit le fichier reçu et écrit son contenu dans un fichier sur le
+             * disque.
+             */
+            byte[] tampon = new byte[Tampon.TAILLE_TAMPON_10240];
+            int longueur;
+            while ( ( longueur = entree.read( tampon ) ) > 0 ) {
+                sortie.write( tampon, 0, longueur );
+            }
+
+        }
+
+        catch ( FileNotFoundException e ) {
+            e.printStackTrace();
+
+        }
+
+        catch ( IOException e ) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        finally {
+            try {
+                sortie.close();
+            } catch ( IOException ignore ) {
+            }
+            try {
+                entree.close();
+            } catch ( IOException ignore ) {
+            }
+        }
+        System.out.println( "Fichier enregistré ici : " + chemin + "/" + libelleImage );
 
     }
 }

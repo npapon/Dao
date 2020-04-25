@@ -73,4 +73,9 @@ public class DAOFactory {
         return utilisateurDaoImpl;
     }
 
+    public ImageDao getImageDao() {
+        ImageDaoImpl imageDaoImpl = new ImageDaoImpl( this );
+        return imageDaoImpl;
+    }
+
 }

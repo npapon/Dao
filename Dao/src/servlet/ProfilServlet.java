@@ -10,11 +10,23 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.Image;
 import constante.Adressesinternes;
+import constante.AttributsServlet;
 import constante.Dossiers;
+import dao.DAOFactory;
+import dao.ImageDao;
 import formulaire.ProfilForm;
 
 @WebServlet( "/ProfilServlet" )
 public class ProfilServlet extends HttpServlet {
+
+    public ImageDao imageDao;
+
+    public void init() throws ServletException {
+
+        imageDao = ( (DAOFactory) this.getServletContext().getAttribute( AttributsServlet.DAOFACTORY ) )
+                .getImageDao();
+
+    }
 
     protected void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
         this.getServletContext().getRequestDispatcher( Adressesinternes.PROFIL ).forward( request,
@@ -22,10 +34,10 @@ public class ProfilServlet extends HttpServlet {
     }
 
     protected void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
-        ProfilForm profilForm = new ProfilForm();
+        ProfilForm profilForm = new ProfilForm( imageDao );
 
         try {
-            Image image = profilForm.enregistrerImageProfil( Dossiers.REPERTOIRE_ABSOLU_IMAGESPROFIL, request );
+            Image image = profilForm.creerImageProfil( Dossiers.REPERTOIRE_ABSOLU_IMAGESPROFIL, request );
         } catch ( Exception e ) {
             // TODO Auto-generated catch block
             e.printStackTrace();
