@@ -2,9 +2,10 @@ package constante;
 
 public class RequetesSql {
 
-    public final static String UTILISATEUR_SELECT_PAR_MAIL = "SELECT * FROM Utilisateur WHERE email = ?";
-    public final static String IMAGEPROFIL_SELECT_PAR_MAIL = "SELECT * FROM ImageProfil WHERE email = ?";
+    public final static String UTILISATEUR_SELECT_PAR_MAIL = "SELECT * FROM utilisateur WHERE email = ?";
+    public final static String SESSION_SELECT_PAR_LOGIN    = "select * from utilisateur where login = ?";
+    public final static String IMAGEPROFIL_SELECT_PAR_MAIL = "SELECT * FROM imageprofil WHERE email = ?";
     public final static String UTILISATEUR_INSERT          = "insert into utilisateur (login, email, mot_de_passe, nom, date_creation) values (?,?,?,?,now())";
-    public final static String IMAGEPROFIL_INSERT          = "insert into ImageProfil(libelle,email,date_creation) values(?,?,now())";
-
+    public final static String IMAGEPROFIL_INSERT          = "insert into imageprofil(libelle,email,date_creation,emplacement) values(?,?,now(),?)";
+    public final static String IMAGEPROFIL_UPDATE          = "update imageprofil set libelle = ?,emplacement = ?, date_modification = now() where email = ?";
 }

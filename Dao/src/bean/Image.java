@@ -8,6 +8,8 @@ public class Image {
     private String    libelle;
     private String    email;
     private Timestamp date_creation;
+    private String    emplacement;
+    private Timestamp date_modification;
 
     public int getId() {
         return id;
@@ -39,6 +41,22 @@ public class Image {
 
     public void setDate_creation( Timestamp date_creation ) {
         this.date_creation = date_creation;
+    }
+
+    public String getEmplacement() {
+        return emplacement;
+    }
+
+    public void setEmplacement( String emplacement ) {
+        this.emplacement = emplacement;
+    }
+
+    public Timestamp getDate_modification() {
+        return date_modification;
+    }
+
+    public void setDate_modification( Timestamp date_modification ) {
+        this.date_modification = date_modification;
     }
 
 }

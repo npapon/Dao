@@ -30,7 +30,6 @@ public class InscriptionServlet extends HttpServlet {
     protected void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
         this.getServletContext().getRequestDispatcher( Adressesinternes.INSCRIPTION ).forward( request,
                 response );
-        InscriptionForm inscriptionFormAvecDao = new InscriptionForm( utilisateurDao );
 
     }
 
@@ -42,9 +41,8 @@ public class InscriptionServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         session.setAttribute( AttributsServlet.UTILISATEUR, utilisateur );
-        session.setAttribute( AttributsServlet.INSCRIPTIONFORM, inscriptionForm );
 
-        response.sendRedirect( Adressesinternes.PROFIL_COURT );
+        response.sendRedirect( Adressesinternes.CONNEXION_COURT );
     }
 
 }

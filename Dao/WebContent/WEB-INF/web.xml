@@ -19,6 +19,24 @@
     <url-pattern>/inscription</url-pattern>
   </servlet-mapping>
   <servlet>
+    <description>Connexion</description>
+    <servlet-name>ConnexionServlet</servlet-name>
+    <servlet-class>servlet.ConnexionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeconnexionServlet</servlet-name>
+    <url-pattern>/deconnexion</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description>Deconnexion</description>
+    <servlet-name>DeconnexionServlet</servlet-name>
+    <servlet-class>servlet.DeconnexionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ConnexionServlet</servlet-name>
+    <url-pattern>/connexion</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <description>Profil</description>
     <servlet-name>Profil</servlet-name>
     <servlet-class>servlet.ProfilServlet</servlet-class>
@@ -33,6 +51,14 @@
     <servlet-name>Profil</servlet-name>
     <url-pattern>/profil</url-pattern>
   </servlet-mapping>
+  <filter>
+    <filter-name>RestrictionFilter</filter-name>
+    <filter-class>filtre.RestrictionFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>RestrictionFilter</filter-name>
+    <url-pattern>/profil</url-pattern>
+  </filter-mapping>
   <filter>
     <filter-name>Set Character Encoding</filter-name>
     <filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>

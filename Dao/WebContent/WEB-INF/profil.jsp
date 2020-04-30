@@ -5,9 +5,11 @@
 <title>MON PROFIL</title>
 </head>
 <body>
+
+
  <fieldset>
                 <legend>Bienvenu <c:out value="${utilisateur.login}"/></legend>
-<img class ="imageprofil" src="<c:out value='${imageprofil.chemin}'/>"  title="profil" alt="Votre photo"/>
+<img class ="imageprofil" src="<c:out value='${imageprofil.emplacement}'/>"  title="profil" alt="Votre photo"/>
 </fieldset>
 <form method="post" enctype="multipart/form-data">
 
@@ -17,7 +19,7 @@
 
                 <label for="imageprofil">Charger la photo <span class="requis">*</span></label>
                 <input type="file" id="imageprofil" name="imageprofil" />
-                 <span class="succes"><c:out value="${imageprofil.nom}"/></span>
+                 <span class="succes"><c:out value="${imageprofil.libelle}"/></span>
                  <div class="erreur" id="erreurimageprofil"></div>
                 <br />
                 

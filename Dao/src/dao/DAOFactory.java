@@ -78,4 +78,9 @@ public class DAOFactory {
         return imageDaoImpl;
     }
 
+    public SessionDao getSessionDao() {
+        SessionDaoImpl sessionDaoImpl = new SessionDaoImpl( this );
+        return sessionDaoImpl;
+    }
+
 }

@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import bean.Image;
-import bean.Utilisateur;
+import bean.Session;
 import constante.AttributsServlet;
 import constante.MessagesErreur;
 import constante.MessagesSucces;
@@ -47,18 +47,22 @@ public class ProfilForm {
             Part part = chargerImageProfil( request );
             affecterEmail( image, request );
             String libelleImage = affecterLibelleImage( part, image );
+            String emplacement = affecterEmplacementImage( chemin, libelleImage, image );
 
             if ( erreurs.isEmpty() ) {
                 creationAutorisee = MessagesSucces.IMAGEPROFIL_CREE;
                 enregistrerImageProfil( part, chemin, libelleImage );
-                imageDao.creerImage( image );
+                if ( imageDao.rechercherImage( image.getEmail() ) == null ) {
+                    imageDao.creerImage( image );
+                } else {
+                    imageDao.modifierImage( image );
+                }
                 System.out.println( creationAutorisee );
             } else {
                 creationAutorisee = MessagesErreur.CREATION_IMAGEPROFIL_KO;
                 System.out.println( creationAutorisee );
             }
 
-            System.out.println( "image " + image.getEmail() + image.getLibelle() );
         } catch ( DAOException e ) {
             creationAutorisee = MessagesErreur.CREATION_IMAGEPROFIL_KO_RAISON_BDD;
             System.out.println( creationAutorisee );
@@ -147,10 +151,10 @@ public class ProfilForm {
     public void affecterEmail( Image image, HttpServletRequest request ) {
 
         HttpSession session = request.getSession();
-        Utilisateur utilisateur = (Utilisateur) session.getAttribute( AttributsServlet.UTILISATEUR );
-        String email = utilisateur.getEmail();
+        Session sessionActive = (Session) session.getAttribute( AttributsServlet.SESSIONACTIVE );
 
-        System.out.println( "email récupéré à persisiter dans table image " + email );
+        String email = sessionActive.getEmail();
+
         if ( email.isEmpty() ) {
             try {
                 throw ( new FormValidationException( MessagesErreur.EMAIL_ABSENT ) );
@@ -173,8 +177,26 @@ public class ProfilForm {
         validationFormatImage( part );
 
         image.setLibelle( libelleImage );
+
         return libelleImage;
 
+    }
+
+    public String affecterEmplacementImage( String chemin, String libelleImage, Image image ) {
+        String emplacement = chemin + "/" + libelleImage;
+        if ( emplacement.isEmpty() ) {
+            try {
+                throw new FormValidationException( MessagesErreur.EMPLACEMENT_VIDE );
+            } catch ( FormValidationException e ) {
+                System.out.println( e.getMessage() );
+                erreurs.add(
+                        e.getMessage() );
+            }
+
+        } else {
+            image.setEmplacement( emplacement );
+        }
+        return emplacement;
     }
 
     private void validationFormatImage( Part part ) throws Exception {

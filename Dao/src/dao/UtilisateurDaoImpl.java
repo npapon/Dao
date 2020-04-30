@@ -101,8 +101,8 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
         utilisateur.setId( resultset.getInt( UtilisateurTableNomsColonnes.ID ) );
         utilisateur.setLogin( resultset.getString( UtilisateurTableNomsColonnes.LOGIN ) );
         utilisateur.setEmail( resultset.getString( UtilisateurTableNomsColonnes.EMAIL ) );
-        utilisateur.setMot_de_passe( resultset.getString( UtilisateurTableNomsColonnes.EMAIL ) );
-        utilisateur.setNom( resultset.getString( UtilisateurTableNomsColonnes.EMAIL ) );
+        utilisateur.setMot_de_passe( resultset.getString( UtilisateurTableNomsColonnes.MOT_DE_PASSE ) );
+        utilisateur.setNom( resultset.getString( UtilisateurTableNomsColonnes.NOM ) );
         utilisateur.setDate_creation( resultset.getTimestamp( UtilisateurTableNomsColonnes.DATE_CREATION ) );
 
         return utilisateur;

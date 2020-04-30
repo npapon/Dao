@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bean.Image;
 import constante.Adressesinternes;
@@ -35,13 +36,17 @@ public class ProfilServlet extends HttpServlet {
 
     protected void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
         ProfilForm profilForm = new ProfilForm( imageDao );
+        Image image = null;
 
         try {
-            Image image = profilForm.creerImageProfil( Dossiers.REPERTOIRE_ABSOLU_IMAGESPROFIL, request );
+            image = profilForm.creerImageProfil( Dossiers.REPERTOIRE_ABSOLU_IMAGESPROFIL, request );
         } catch ( Exception e ) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+
+        HttpSession session = request.getSession();
+        session.setAttribute( AttributsServlet.IMAGEPROFIL, image );
 
         response.sendRedirect( Adressesinternes.PROFIL_COURT );
     }

@@ -55,6 +55,7 @@ public class ImageDaoImpl implements ImageDao {
         image.setEmail( resultSet.getString( ImageProfilTableNomsColonnes.EMAIL ) );
         image.setLibelle( resultSet.getString( ImageProfilTableNomsColonnes.LIBELLE ) );
         image.setDate_creation( resultSet.getTimestamp( ImageProfilTableNomsColonnes.DATE_CREATION ) );
+        image.setDate_modification( resultSet.getTimestamp( ImageProfilTableNomsColonnes.DATE_MODIFICATION ) );
         return image;
     }
 
@@ -63,7 +64,7 @@ public class ImageDaoImpl implements ImageDao {
         Connection connexion = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSetPourStockerIdAutoGeneres = null;
-        Object[] imageAttributs = { image.getLibelle(), image.getEmail() };
+        Object[] imageAttributs = { image.getLibelle(), image.getEmail(), image.getEmplacement() };
 
         try {
             connexion = daoFactory.getConnection();
@@ -92,6 +93,35 @@ public class ImageDaoImpl implements ImageDao {
         {
             DAOUtilitaire.fermeturesSilencieuses( resultSetPourStockerIdAutoGeneres, preparedStatement, connexion );
         }
+    }
+
+    @Override
+    public void modifierImage( Image image ) throws DAOException {
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSetPourStockerIdAutoGeneres = null;
+        Object[] imageAttributs = { image.getLibelle(), image.getEmplacement(), image.getEmail() };
+
+        try {
+            connexion = daoFactory.getConnection();
+            preparedStatement = DAOUtilitaire.initialisaterRequetePreparee( connexion, RequetesSql.IMAGEPROFIL_UPDATE, false,
+                    imageAttributs );
+
+            int nombreDeLignesUpdate = preparedStatement.executeUpdate();
+
+            if ( nombreDeLignesUpdate == 0 ) {
+                throw new DAOException( MessagesErreur.ECHEC_UPDATE_IMAGEPROFIL );
+            }
+
+        } catch ( SQLException e ) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally
+
+        {
+            DAOUtilitaire.fermeturesSilencieuses( resultSetPourStockerIdAutoGeneres, preparedStatement, connexion );
+        }
+
     }
 
 }

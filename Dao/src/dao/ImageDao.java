@@ -8,4 +8,6 @@ public interface ImageDao {
 
     void creerImage( Image image ) throws DAOException;
 
+    void modifierImage( Image image ) throws DAOException;
+
 }
