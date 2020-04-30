@@ -7,13 +7,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import constante.AdressesIcones;
 import constante.Adressesinternes;
+import constante.AttributsServlet;
 
 @WebServlet( "/DeconnexionServlet" )
 public class DeconnexionServlet extends HttpServlet {
 
     protected void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+
+        session.setAttribute( AttributsServlet.ICONE_DECONNEXION, AdressesIcones.DECONNEXION );
         this.getServletContext().getRequestDispatcher( Adressesinternes.DECONNEXION ).forward( request,
                 response );
     }

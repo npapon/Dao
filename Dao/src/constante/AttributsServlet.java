@@ -10,5 +10,6 @@ public class AttributsServlet {
     public static final String CONNEXIONFORM     = "connexionform";
     public static final String COOKIE_LOGIN      = "cookielogin";
     public static final String COOKIE_MOTDEPASSE = "cookiemotdepasse";
+    public static final String ICONE_DECONNEXION = "iconedeconnexion";
 
 }
