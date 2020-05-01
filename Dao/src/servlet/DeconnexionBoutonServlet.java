@@ -10,16 +10,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import constante.Adressesinternes;
+import constante.AttributsServlet;
+import constante.RepertoiresIcones;
 
-@WebServlet( "/DeconnexionServlet" )
-public class DeconnexionServlet extends HttpServlet {
+@WebServlet( "/DeconnexionBoutonServlet" )
+public class DeconnexionBoutonServlet extends HttpServlet {
 
     protected void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        session.invalidate();
-
-        response.sendRedirect( Adressesinternes.CONNEXION_COURT );
-
+        session.setAttribute( AttributsServlet.ICONE_DECONNEXION, RepertoiresIcones.DECONNEXION );
+        session.setAttribute( AttributsServlet.DECONNEXION_PAGE, Adressesinternes.DECONNEXION_COURT );
+        this.getServletContext().getRequestDispatcher( Adressesinternes.DECONNEXIONBOUTON ).forward( request,
+                response );
     }
 
 }

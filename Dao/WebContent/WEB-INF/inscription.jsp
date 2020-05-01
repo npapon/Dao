@@ -6,6 +6,11 @@
 <title>INSCRIPTION</title>
 
 </head>
+
+ <c:if test="${!empty session}">
+<c:import url="/${deconnexionboutonpage}" var="file" scope="page" />
+    ${file}
+    </c:if>
 <body>
         <form method="post">
         

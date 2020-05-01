@@ -4,6 +4,7 @@ public class Session {
     private String login;
     private String mot_de_passe;
     private String email;
+    private String emplacementImageProfil;
 
     public String getLogin() {
         return login;
@@ -27,6 +28,14 @@ public class Session {
 
     public void setEmail( String email ) {
         this.email = email;
+    }
+
+    public String getEmplacementImageProfil() {
+        return emplacementImageProfil;
+    }
+
+    public void setEmplacementImageProfil( String emplacementImageProfil ) {
+        this.emplacementImageProfil = emplacementImageProfil;
     }
 
 }

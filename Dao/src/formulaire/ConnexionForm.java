@@ -5,22 +5,26 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import bean.Image;
 import bean.Session;
 import constante.MessagesErreur;
 import constante.MessagesSucces;
 import constante.ParametresFormulaire;
 import dao.DAOException;
+import dao.ImageDao;
 import dao.SessionDao;
 import exception.FormValidationException;
 
 public class ConnexionForm {
 
     private SessionDao   sessionDao;
+    private ImageDao     imageDao;
     private List<String> erreurs = new ArrayList<String>();
     private String       connexionAutorisee;
 
-    public ConnexionForm( SessionDao sessionDao ) {
+    public ConnexionForm( SessionDao sessionDao, ImageDao imageDao ) {
         this.sessionDao = sessionDao;
+        this.imageDao = imageDao;
     }
 
     public Session connecterUtilisateur( HttpServletRequest request ) {
@@ -32,8 +36,8 @@ public class ConnexionForm {
 
             affecterLogin( login );
             verifierMotDePasse( login, motdepasse, sessionActive );
-            recupererEmail( login, motdepasse, sessionActive );
-
+            String email = recupererEmail( login, motdepasse, sessionActive );
+            recupererEmplacementImageProfil( email, sessionActive );
             if ( erreurs.isEmpty() ) {
                 connexionAutorisee = MessagesSucces.SESSIONACTIVE_CREE;
                 // utilisateurDao.creerUtilisateur( utilisateur );
@@ -85,7 +89,8 @@ public class ConnexionForm {
 
     }
 
-    public void recupererEmail( String login, String motdepasse, Session session ) {
+    public String recupererEmail( String login, String motdepasse, Session session ) {
+        String email = null;
         if ( sessionDao.rechercherSession( login, motdepasse ) == null ) {
             try {
                 throw new FormValidationException( MessagesErreur.MOTDEPASSE_INCORRECT );
@@ -96,8 +101,32 @@ public class ConnexionForm {
                         e.getMessage() );
             }
         } else {
-            String email = sessionDao.rechercherSession( login, motdepasse ).getEmail();
+            email = sessionDao.rechercherSession( login, motdepasse ).getEmail();
             session.setEmail( email );
+
+        }
+        return email;
+    }
+
+    private void recupererEmplacementImageProfil( String email, Session sessionActive ) {
+        Image imageProfil = new Image();
+        if ( imageDao.rechercherImage( email ) == null ) {
+            System.out.println( "echec" );
+            try {
+                throw new FormValidationException( MessagesErreur.IMAGEPROFIL_INEXISTANTE );
+            } catch ( FormValidationException e ) {
+                System.out.println( e.getMessage() );
+
+                erreurs.add(
+                        e.getMessage() );
+            }
+        } else {
+            System.out.println( "succes" + imageDao.rechercherImage( email ).getId()
+                    + imageDao.rechercherImage( email ).getEmail() + imageDao.rechercherImage( email ).getEmplacement() );
+            System.out.println( "email suspect" + email );
+            System.out.println( "emplace suspect" + imageDao.rechercherImage( email ).getEmplacement() );
+            String imageProfilEmplacement = imageDao.rechercherImage( email ).getEmplacement();
+            sessionActive.setEmplacementImageProfil( imageProfilEmplacement );
         }
 
     }

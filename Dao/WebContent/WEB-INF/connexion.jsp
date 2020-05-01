@@ -7,7 +7,7 @@
 
 </head>
  <c:if test="${!empty session}">
-<c:import url="/deconnexion" var="file" scope="page" />
+<c:import url="/${deconnexionboutonpage}" var="file" scope="page" />
     ${file}
     </c:if>
 <body>

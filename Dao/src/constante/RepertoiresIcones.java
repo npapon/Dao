@@ -1,6 +1,6 @@
 package constante;
 
-public class AdressesIcones {
+public class RepertoiresIcones {
     public static final String DECONNEXION = "images/icones/deconnexion.png";
 
 }

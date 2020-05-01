@@ -12,6 +12,8 @@ public class MessagesErreur {
     public static final String NOM_TROP_COURT                       = "Le nom doit faire plus de 3 caractères";
     public static final String MOTDEPASSE_TROP_COURT                = "Le mot de passe doit faire plus de 3 caractères";
     public static final String MOTDEPASSE_INCORRECT                 = "Le mot de passe n'est pas le bon pour le login choisi";
+    public static final String IMAGEPROFIL_INEXISTANTE              = "Aucune image n'a été trouvé pour le mail choisi";
+
     public static final String EMAIL_FORMAT_INVALIDE                = "Le format de l'email n'est pas valide";
     public static final String EMAIL_ABSENT                         = "Impossible de récupérer l'email dans la session de l'utilisateur";
     public static final String EMPLACEMENT_VIDE                     = "Aucun emplacement de défini";

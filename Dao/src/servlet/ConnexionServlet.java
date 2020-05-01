@@ -16,17 +16,21 @@ import constante.Adressesinternes;
 import constante.AttributsServlet;
 import constante.Cookies;
 import dao.DAOFactory;
+import dao.ImageDao;
 import dao.SessionDao;
 import formulaire.ConnexionForm;
 
 @WebServlet( "/ConnexionServlet" )
 public class ConnexionServlet extends HttpServlet {
     private SessionDao sessionDao;
+    private ImageDao   imageDao;
 
     public void init() throws ServletException {
 
         sessionDao = ( (DAOFactory) this.getServletContext().getAttribute( AttributsServlet.DAOFACTORY ) )
                 .getSessionDao();
+        imageDao = ( (DAOFactory) this.getServletContext().getAttribute( AttributsServlet.DAOFACTORY ) )
+                .getImageDao();
 
     }
 
@@ -36,7 +40,7 @@ public class ConnexionServlet extends HttpServlet {
     }
 
     protected void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
-        ConnexionForm connexionForm = new ConnexionForm( sessionDao );
+        ConnexionForm connexionForm = new ConnexionForm( sessionDao, imageDao );
 
         Session sessionactive = connexionForm.connecterUtilisateur( request );
 
@@ -53,6 +57,7 @@ public class ConnexionServlet extends HttpServlet {
             session.setAttribute( AttributsServlet.CONNEXIONFORM, connexionForm );
             session.setAttribute( AttributsServlet.COOKIE_LOGIN, cookieLogin );
             session.setAttribute( AttributsServlet.COOKIE_MOTDEPASSE, cookieMotDePasse );
+            session.setAttribute( AttributsServlet.DECONNEXIONBOUTON_PAGE, Adressesinternes.DECONNEXIONBOUTON_COURT );
             session.setAttribute( AttributsServlet.SESSIONACTIVE, sessionactive );
 
             response.sendRedirect( Adressesinternes.PROFIL_COURT );

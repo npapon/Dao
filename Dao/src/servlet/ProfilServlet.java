@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.Image;
+import bean.Session;
 import constante.Adressesinternes;
 import constante.AttributsServlet;
 import constante.Dossiers;
@@ -46,6 +47,8 @@ public class ProfilServlet extends HttpServlet {
         }
 
         HttpSession session = request.getSession();
+        Session sessionActive = (Session) session.getAttribute( AttributsServlet.SESSIONACTIVE );
+        sessionActive.setEmplacementImageProfil( image.getEmplacement() );
         session.setAttribute( AttributsServlet.IMAGEPROFIL, image );
 
         response.sendRedirect( Adressesinternes.PROFIL_COURT );

@@ -56,6 +56,7 @@ public class ImageDaoImpl implements ImageDao {
         image.setLibelle( resultSet.getString( ImageProfilTableNomsColonnes.LIBELLE ) );
         image.setDate_creation( resultSet.getTimestamp( ImageProfilTableNomsColonnes.DATE_CREATION ) );
         image.setDate_modification( resultSet.getTimestamp( ImageProfilTableNomsColonnes.DATE_MODIFICATION ) );
+        image.setEmplacement( resultSet.getString( ImageProfilTableNomsColonnes.EMPLACEMENT ) );
         return image;
     }
 
