@@ -108,4 +108,34 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
         return utilisateur;
     }
 
+    @Override
+    public void supprimerUtilisateur( Utilisateur utilisateur ) throws DAOException {
+        // TODO Auto-generated method stub
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        Object[] utilisateurAttributs = { utilisateur.getEmail() };
+
+        try {
+
+            connection = daoFactory.getConnection();
+            preparedStatement = DAOUtilitaire.initialisaterRequetePreparee( connection, RequetesSql.UTILISATEUR_DELETE,
+                    true,
+                    utilisateurAttributs );
+
+            int nombreDeLignesEffacees = preparedStatement.executeUpdate();
+            if ( nombreDeLignesEffacees == 0 ) {
+                throw new DAOException( MessagesErreur.ECHEC_INSERT_UTILISATEUR );
+            }
+
+        } catch ( SQLException e ) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally {
+            fermeturesSilencieuses( preparedStatement, connection );
+
+        }
+
+    }
+
 }

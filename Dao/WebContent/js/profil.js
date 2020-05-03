@@ -1,11 +1,14 @@
 
 var inputFichierImage = document.getElementById("imageprofil");
 var inputFichierImageErreur = document.getElementById("erreurimageprofil");
+var imgSupprimerCompte = document.getElementById("supprimercompte");
 var submitInput = document.getElementById("submit");
 //$ signifie dans la regex finie par .jpg par ex
 
 var regex=/.jpg$|.png$/;
 	
+imgSupprimerCompte.addEventListener("click",function(){if(confirm("Voulez-vous supprimer le compte ?"))
+	{}})
 
 submitInput.addEventListener("click",
 		function(e){

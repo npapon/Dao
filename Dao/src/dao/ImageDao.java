@@ -10,4 +10,5 @@ public interface ImageDao {
 
     void modifierImage( Image image ) throws DAOException;
 
+    void supprimerImage( Image image ) throws DAOException;
 }

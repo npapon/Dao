@@ -18,6 +18,7 @@ import javax.servlet.http.Part;
 
 import bean.Image;
 import bean.Session;
+import bean.Utilisateur;
 import constante.AttributsServlet;
 import constante.MessagesErreur;
 import constante.MessagesSucces;
@@ -25,21 +26,24 @@ import constante.ParametresFormulaire;
 import constante.Tampon;
 import dao.DAOException;
 import dao.ImageDao;
+import dao.UtilisateurDao;
 import eu.medsea.mimeutil.MimeUtil;
 import exception.FormValidationException;
 
 public class ProfilForm {
-    List<String>     erreurs = new ArrayList<String>();
-    private ImageDao imageDao;
-    private String   creationAutorisee;
+    List<String>           erreurs = new ArrayList<String>();
+    private ImageDao       imageDao;
+    private UtilisateurDao utilisateurDao;
+    private String         creationAutorisee;
 
-    public ProfilForm( ImageDao imageDao ) {
+    public ProfilForm( ImageDao imageDao, UtilisateurDao utilisateurDao ) {
         this.imageDao = imageDao;
+        this.utilisateurDao = utilisateurDao;
     }
 
     public Image
 
-            creerImageProfil( String chemin, HttpServletRequest request ) throws Exception {
+            creerImageProfil( String contexteApplication, String chemin, HttpServletRequest request ) throws Exception {
         // recuperation email
 
         Image image = new Image();
@@ -51,7 +55,7 @@ public class ProfilForm {
 
             if ( erreurs.isEmpty() ) {
                 creationAutorisee = MessagesSucces.IMAGEPROFIL_CREE;
-                enregistrerImageProfil( part, chemin, libelleImage );
+                enregistrerImageProfil( part, contexteApplication, chemin, libelleImage );
                 if ( imageDao.rechercherImage( image.getEmail() ) == null ) {
                     imageDao.creerImage( image );
                 } else {
@@ -69,6 +73,48 @@ public class ProfilForm {
             e.printStackTrace();
         }
         return image;
+    }
+
+    public void supprimerImageProfil( HttpServletRequest request ) {
+        Image imageProfil = new Image();
+        String email = recupererEmailAssocieALImage( request );
+        imageProfil.setEmail( email );
+        if ( email.isEmpty() ) {
+            try {
+                throw ( new FormValidationException( MessagesErreur.EMAIL_ABSENT ) );
+            } catch ( FormValidationException e ) {
+                {
+                    System.out.println( e.getMessage() );
+                    erreurs.add(
+                            e.getMessage() );
+                }
+            }
+        } else {
+            imageDao.supprimerImage( imageProfil );
+
+        }
+
+    }
+
+    public void supprimerUtilisateur( HttpServletRequest request ) {
+        Utilisateur utilisateur = new Utilisateur();
+        String email = recupererEmailAssocieALImage( request );
+        utilisateur.setEmail( email );
+        if ( email.isEmpty() ) {
+            try {
+                throw ( new FormValidationException( MessagesErreur.EMAIL_ABSENT ) );
+            } catch ( FormValidationException e ) {
+                {
+                    System.out.println( e.getMessage() );
+                    erreurs.add(
+                            e.getMessage() );
+                }
+            }
+        } else {
+            utilisateurDao.supprimerUtilisateur( utilisateur );
+
+        }
+
     }
 
     // getParts permet de récupérer les données envoyer dans un formulaire
@@ -150,10 +196,7 @@ public class ProfilForm {
 
     public void affecterEmail( Image image, HttpServletRequest request ) {
 
-        HttpSession session = request.getSession();
-        Session sessionActive = (Session) session.getAttribute( AttributsServlet.SESSIONACTIVE );
-
-        String email = sessionActive.getEmail();
+        String email = recupererEmailAssocieALImage( request );
 
         if ( email.isEmpty() ) {
             try {
@@ -229,13 +272,14 @@ public class ProfilForm {
 
     }
 
-    private void enregistrerImageProfil( Part part, String chemin, String libelleImage ) {
+    private void enregistrerImageProfil( Part part, String contexteApplication, String chemin, String libelleImage ) {
         BufferedInputStream entree = null;
         BufferedOutputStream sortie = null;
         try {
             entree = new BufferedInputStream( part.getInputStream(), Tampon.TAILLE_TAMPON_10240 );
 
-            sortie = new BufferedOutputStream( new FileOutputStream( new File( chemin + "/" + libelleImage ) ),
+            sortie = new BufferedOutputStream(
+                    new FileOutputStream( new File( contexteApplication + "/" + chemin + "/" + libelleImage ) ),
                     Tampon.TAILLE_TAMPON_10240 );
 
             /*
@@ -273,4 +317,15 @@ public class ProfilForm {
         System.out.println( "Fichier enregistré ici : " + chemin + "/" + libelleImage );
 
     }
+
+    private String recupererEmailAssocieALImage( HttpServletRequest request ) {
+        HttpSession session = request.getSession();
+        Session sessionActive = (Session) session.getAttribute( AttributsServlet.SESSIONACTIVE );
+
+        String email = sessionActive.getEmail();
+
+        return email;
+
+    }
+
 }

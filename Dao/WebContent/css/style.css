@@ -117,6 +117,12 @@ img[title="deconnexion"] {
 	float: right;
 }
 
+img[title="supprimer"] {
+    width: 30px;
+    height: 30px;
+    float: right;
+}
+
 img.imageprofil {
 	height: 100px;
 	width: auto;

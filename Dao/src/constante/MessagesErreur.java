@@ -6,6 +6,8 @@ public class MessagesErreur {
     public static final String ECHEC_INSERT_UTILISATEUR             = "L'utilisateur n'a pas été inséré en base";
     public static final String ECHEC_INSERT_IMAGEPROFIL             = "L'image de profil n'a pas été inséré en base";
     public static final String ECHEC_UPDATE_IMAGEPROFIL             = "L'image de profil n'a pas été updaté en base";
+    public static final String ECHEC_DELETE_IMAGEPROFIL             = "L'image de profil n'a pas été effacé en base";
+    public static final String ECHEC_DELETE_UTILISATEUR             = "L'utilisateur n'a pas été effacé en base";
     public static final String ECHEC_RECUPERATION_ID_UTILISATEUR    = "aucun id unique pour l'utilisateur de trouvé car aucune ligne n'a été insérée pour l'utilisateur en base";
     public static final String ECHEC_RECUPERATION_ID_IMAGEPROFIL    = "aucun id unique pour l'image de profil de trouvé car aucune ligne n'a été insérée pour l'utilisateur en base";
     public static final String LOGIN_TROP_COURT                     = "Le login doit faire plus de 3 caractères";
@@ -13,7 +15,6 @@ public class MessagesErreur {
     public static final String MOTDEPASSE_TROP_COURT                = "Le mot de passe doit faire plus de 3 caractères";
     public static final String MOTDEPASSE_INCORRECT                 = "Le mot de passe n'est pas le bon pour le login choisi";
     public static final String IMAGEPROFIL_INEXISTANTE              = "Aucune image n'a été trouvé pour le mail choisi";
-
     public static final String EMAIL_FORMAT_INVALIDE                = "Le format de l'email n'est pas valide";
     public static final String EMAIL_ABSENT                         = "Impossible de récupérer l'email dans la session de l'utilisateur";
     public static final String EMPLACEMENT_VIDE                     = "Aucun emplacement de défini";

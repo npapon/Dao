@@ -36,7 +36,7 @@
     <servlet-name>DeconnexionServlet</servlet-name>
     <servlet-class>servlet.DeconnexionServlet</servlet-class>
   </servlet>
-    <servlet>
+  <servlet>
     <description>DeconnexionBouton</description>
     <servlet-name>DeconnexionBoutonServlet</servlet-name>
     <servlet-class>servlet.DeconnexionBoutonServlet</servlet-class>
@@ -44,6 +44,15 @@
   <servlet-mapping>
     <servlet-name>DeconnexionBoutonServlet</servlet-name>
     <url-pattern>/deconnexionbouton</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <description>EffacerMonCompte</description>
+    <servlet-name>EffacerMonCompte</servlet-name>
+    <servlet-class>servlet.EffacerMonCompte</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EffacerMonCompte</servlet-name>
+    <url-pattern>/effacermoncompte</url-pattern>
   </servlet-mapping>
   <servlet>
     <description>Profil</description>
@@ -67,6 +76,7 @@
   <filter-mapping>
     <filter-name>RestrictionFilter</filter-name>
     <url-pattern>/profil</url-pattern>
+     <url-pattern>/effacermoncompte</url-pattern>
   </filter-mapping>
   <filter>
     <filter-name>Set Character Encoding</filter-name>

@@ -27,7 +27,6 @@ public class ImageDaoImpl implements ImageDao {
 
         try {
             connexion = daoFactory.getConnection();
-            System.out.println( "email pas ok " + email );
             preparedStatement = DAOUtilitaire.initialisaterRequetePreparee( connexion, RequetesSql.IMAGEPROFIL_SELECT_PAR_MAIL,
                     false,
                     email );
@@ -100,7 +99,7 @@ public class ImageDaoImpl implements ImageDao {
     public void modifierImage( Image image ) throws DAOException {
         Connection connexion = null;
         PreparedStatement preparedStatement = null;
-        ResultSet resultSetPourStockerIdAutoGeneres = null;
+
         Object[] imageAttributs = { image.getLibelle(), image.getEmplacement(), image.getEmail() };
 
         try {
@@ -120,7 +119,35 @@ public class ImageDaoImpl implements ImageDao {
         } finally
 
         {
-            DAOUtilitaire.fermeturesSilencieuses( resultSetPourStockerIdAutoGeneres, preparedStatement, connexion );
+            DAOUtilitaire.fermeturesSilencieuses( preparedStatement, connexion );
+        }
+
+    }
+
+    @Override
+    public void supprimerImage( Image image ) throws DAOException {
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        Object[] imageAttributs = { image.getEmail() };
+
+        try {
+            connexion = daoFactory.getConnection();
+            preparedStatement = DAOUtilitaire.initialisaterRequetePreparee( connexion, RequetesSql.IMAGEPROFIL_DELETE, false,
+                    imageAttributs );
+
+            int nombreDeLignesDelete = preparedStatement.executeUpdate();
+
+            if ( nombreDeLignesDelete == 0 ) {
+                throw new DAOException( MessagesErreur.ECHEC_DELETE_IMAGEPROFIL );
+            }
+
+        } catch ( SQLException e ) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally
+
+        {
+            DAOUtilitaire.fermeturesSilencieuses( preparedStatement, connexion );
         }
 
     }

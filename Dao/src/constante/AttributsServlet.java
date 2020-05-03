@@ -11,7 +11,9 @@ public class AttributsServlet {
     public static final String COOKIE_LOGIN           = "cookielogin";
     public static final String COOKIE_MOTDEPASSE      = "cookiemotdepasse";
     public static final String ICONE_DECONNEXION      = "iconedeconnexion";
+    public static final String ICONE_SUPPRIMER        = "iconesupprimer";
     public static final String DECONNEXION_PAGE       = "deconnexionpage";
     public static final String DECONNEXIONBOUTON_PAGE = "deconnexionboutonpage";
+    public static final String EFFACERMONCOMPTE_PAGE  = "effacermoncomptepage";
 
 }

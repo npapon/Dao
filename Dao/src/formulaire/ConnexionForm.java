@@ -111,16 +111,11 @@ public class ConnexionForm {
     private void recupererEmplacementImageProfil( String email, Session sessionActive ) {
         Image imageProfil = new Image();
         if ( imageDao.rechercherImage( email ) == null ) {
-            System.out.println( "echec" );
-            try {
-                throw new FormValidationException( MessagesErreur.IMAGEPROFIL_INEXISTANTE );
-            } catch ( FormValidationException e ) {
-                System.out.println( e.getMessage() );
+            System.out.println( MessagesErreur.IMAGEPROFIL_INEXISTANTE );
 
-                erreurs.add(
-                        e.getMessage() );
-            }
-        } else {
+        } else
+
+        {
             System.out.println( "succes" + imageDao.rechercherImage( email ).getId()
                     + imageDao.rechercherImage( email ).getEmail() + imageDao.rechercherImage( email ).getEmplacement() );
             System.out.println( "email suspect" + email );

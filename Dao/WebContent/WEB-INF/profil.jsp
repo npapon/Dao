@@ -11,10 +11,18 @@
     ${file}
     </c:if>
 <body>
-    
  <fieldset>
-                <legend>Bienvenu <c:out value="${session.login}"/></legend>
+                <legend>Bienvenu(e) <c:out value="${session.login}"/></legend>
+                <div>
 <img class ="imageprofil" src="<c:out value='${session.emplacementImageProfil}'/>"  title="profil" alt="Votre photo"/>
+
+<a href="<c:out value='${effacermoncomptepage}'/>" title="effacermoncompte" >
+
+<img src="<c:out value='${iconesupprimer}'/>" title ="supprimer" alt="Effacer mon compte" id="supprimercompte" />
+
+</a>
+
+</div>
 </fieldset>
 <form method="post" enctype="multipart/form-data">
 

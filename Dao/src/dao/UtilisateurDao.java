@@ -8,4 +8,6 @@ public interface UtilisateurDao {
 
     void creerUtilisateur( Utilisateur utilisateur ) throws DAOException;
 
+    void supprimerUtilisateur( Utilisateur utilisateur ) throws DAOException;
+
 }

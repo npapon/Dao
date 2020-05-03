@@ -16,5 +16,8 @@ public class Adressesinternes {
     public static final String DECONNEXIONBOUTON             = "/WEB-INF/deconnexionbouton.jsp";
     public static final String DECONNEXIONBOUTON_COURT       = "deconnexionbouton";
     public static final String DECONNEXIONBOUTON_DESCRIPTION = "Bouton de deconnexion";
+    public static final String EFFACERMONCOMPTE              = "/WEB-INF/effacermoncompte.jsp";
+    public static final String EFFACERMONCOMPTE_COURT        = "effacermoncompte";
+    public static final String EFFACERMONCOMPTE_DESCRIPTION  = "Effacer mon compte";
 
 }

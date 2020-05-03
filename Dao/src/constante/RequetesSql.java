@@ -8,4 +8,6 @@ public class RequetesSql {
     public final static String UTILISATEUR_INSERT          = "insert into utilisateur (login, email, mot_de_passe, nom, date_creation) values (?,?,?,?,now())";
     public final static String IMAGEPROFIL_INSERT          = "insert into imageprofil(libelle,email,date_creation,emplacement) values(?,?,now(),?)";
     public final static String IMAGEPROFIL_UPDATE          = "update imageprofil set libelle = ?,emplacement = ?, date_modification = now() where email = ?";
+    public final static String IMAGEPROFIL_DELETE          = "delete from imageprofil where email = ?";
+    public final static String UTILISATEUR_DELETE          = "delete from utilisateur where email = ?";
 }
