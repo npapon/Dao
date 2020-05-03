@@ -19,6 +19,7 @@ public class SessionDaoImpl implements SessionDao {
 
     public SessionDaoImpl( DAOFactory daoFactory ) {
         this.daoFactory = daoFactory;
+
     }
 
     @Override
