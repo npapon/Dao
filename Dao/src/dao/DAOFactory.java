@@ -83,4 +83,9 @@ public class DAOFactory {
         return sessionDaoImpl;
     }
 
+    public MenuDao getMenuDao() {
+        MenuDaoImpl menuDaoImpl = new MenuDaoImpl( this );
+        return menuDaoImpl;
+    }
+
 }

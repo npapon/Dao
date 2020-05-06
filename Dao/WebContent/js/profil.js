@@ -7,8 +7,12 @@ var submitInput = document.getElementById("submit");
 
 var regex=/.jpg$|.png$/;
 	
-imgSupprimerCompte.addEventListener("click",function(){if(confirm("Voulez-vous supprimer le compte ?"))
-	{}})
+imgSupprimerCompte.addEventListener("click",function(e){if(!confirm("Voulez-vous supprimer le compte ?"))
+	{
+	e.preventDefault();
+	
+	}
+})
 
 submitInput.addEventListener("click",
 		function(e){

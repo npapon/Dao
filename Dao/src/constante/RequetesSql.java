@@ -10,4 +10,6 @@ public class RequetesSql {
     public final static String IMAGEPROFIL_UPDATE          = "update imageprofil set libelle = ?,emplacement = ?, date_modification = now() where email = ?";
     public final static String IMAGEPROFIL_DELETE          = "delete from imageprofil where email = ?";
     public final static String UTILISATEUR_DELETE          = "delete from utilisateur where email = ?";
+    public final static String MENU_SELECT                 = "select * from menu where actif ='A' order by ordre asc";
+
 }

@@ -9,6 +9,24 @@
   <listener>
     <listener-class>dao.InitialisationDaoFactory</listener-class>
   </listener>
+   <servlet>
+    <description>Home</description>
+    <servlet-name>HomeServlet</servlet-name>
+    <servlet-class>servlet.HomeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HomeServlet</servlet-name>
+    <url-pattern>/home</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description>Menu</description>
+    <servlet-name>MenuServlet</servlet-name>
+    <servlet-class>servlet.MenuServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MenuServlet</servlet-name>
+    <url-pattern>/menu</url-pattern>
+  </servlet-mapping>
   <servlet>
     <description>Inscription</description>
     <servlet-name>InscriptionServlet</servlet-name>
@@ -45,13 +63,13 @@
     <servlet-name>DeconnexionBoutonServlet</servlet-name>
     <url-pattern>/deconnexionbouton</url-pattern>
   </servlet-mapping>
-    <servlet>
-    <description>EffacerMonCompte</description>
-    <servlet-name>EffacerMonCompte</servlet-name>
-    <servlet-class>servlet.EffacerMonCompte</servlet-class>
+  <servlet>
+    <description>EffacerMonCompteServlet</description>
+    <servlet-name>EffacerMonCompteServlet</servlet-name>
+    <servlet-class>servlet.EffacerMonCompteServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>EffacerMonCompte</servlet-name>
+    <servlet-name>EffacerMonCompteServlet</servlet-name>
     <url-pattern>/effacermoncompte</url-pattern>
   </servlet-mapping>
   <servlet>
@@ -76,7 +94,7 @@
   <filter-mapping>
     <filter-name>RestrictionFilter</filter-name>
     <url-pattern>/profil</url-pattern>
-     <url-pattern>/effacermoncompte</url-pattern>
+    <url-pattern>/effacermoncompte</url-pattern>
   </filter-mapping>
   <filter>
     <filter-name>Set Character Encoding</filter-name>

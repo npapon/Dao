@@ -57,6 +57,8 @@ public class ConnexionServlet extends HttpServlet {
             session.setAttribute( AttributsServlet.CONNEXIONFORM, connexionForm );
             session.setAttribute( AttributsServlet.COOKIE_LOGIN, cookieLogin );
             session.setAttribute( AttributsServlet.COOKIE_MOTDEPASSE, cookieMotDePasse );
+            session.setAttribute( AttributsServlet.MENU_PAGE,
+                    Adressesinternes.MENU_COURT );
             session.setAttribute( AttributsServlet.DECONNEXIONBOUTON_PAGE, Adressesinternes.DECONNEXIONBOUTON_COURT );
             session.setAttribute( AttributsServlet.SESSIONACTIVE, sessionactive );
 

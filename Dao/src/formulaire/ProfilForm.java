@@ -7,6 +7,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -75,10 +79,12 @@ public class ProfilForm {
         return image;
     }
 
-    public void supprimerImageProfil( HttpServletRequest request ) {
+    public void supprimerImageProfil( String contexteApplication, String chemin, HttpServletRequest request ) throws Exception {
         Image imageProfil = new Image();
         String email = recupererEmailAssocieALImage( request );
         imageProfil.setEmail( email );
+        String libelleImageProfil = recupererLibelleAssocieALImage( email );
+
         if ( email.isEmpty() ) {
             try {
                 throw ( new FormValidationException( MessagesErreur.EMAIL_ABSENT ) );
@@ -91,6 +97,7 @@ public class ProfilForm {
             }
         } else {
             imageDao.supprimerImage( imageProfil );
+            supprimerImageDuRepertoire( contexteApplication, chemin, libelleImageProfil );
 
         }
 
@@ -114,6 +121,31 @@ public class ProfilForm {
             utilisateurDao.supprimerUtilisateur( utilisateur );
 
         }
+
+    }
+
+    public void supprimerImageDuRepertoire( String contexteApplication, String chemin, String libelleImage ) {
+        Path path = Paths.get( contexteApplication + "/" + chemin + "/" + libelleImage );
+
+        try {
+            if ( Files.exists( path ) ) {
+                Files.delete( path );
+            }
+        } catch ( NoSuchFileException e ) {
+            System.out.println( "Le fichier suivant n'existe pas : " + path.getFileName() );
+            System.out.println( e.getMessage() );
+            erreurs.add(
+                    e.getMessage() );
+        } catch ( IOException e ) {
+            System.out.println( e.getMessage() );
+            erreurs.add(
+                    e.getMessage() );
+        }
+    }
+
+    public void supprimerCompte( String contexteApplication, String chemin, HttpServletRequest request ) throws Exception {
+        supprimerImageProfil( contexteApplication, chemin, request );
+        supprimerUtilisateur( request );
 
     }
 
@@ -325,6 +357,15 @@ public class ProfilForm {
         String email = sessionActive.getEmail();
 
         return email;
+
+    }
+
+    private String recupererLibelleAssocieALImage( String email ) {
+
+        Image imageProfil = imageDao.rechercherImage( email );
+
+        String libelleImage = imageProfil.getLibelle();
+        return libelleImage;
 
     }
 

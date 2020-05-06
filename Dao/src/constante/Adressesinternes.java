@@ -19,5 +19,11 @@ public class Adressesinternes {
     public static final String EFFACERMONCOMPTE              = "/WEB-INF/effacermoncompte.jsp";
     public static final String EFFACERMONCOMPTE_COURT        = "effacermoncompte";
     public static final String EFFACERMONCOMPTE_DESCRIPTION  = "Effacer mon compte";
+    public static final String MENU                          = "/WEB-INF/menu.jsp";
+    public static final String MENU_COURT                    = "menu";
+    public static final String MENU_DESCRIPTION              = "Menu du site";
+    public static final String HOME                          = "/WEB-INF/home.jsp";
+    public static final String HOME_COURT                    = "home";
+    public static final String HOME_DESCRIPTION              = "Homepage";
 
 }

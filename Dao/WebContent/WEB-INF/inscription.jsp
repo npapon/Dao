@@ -4,14 +4,20 @@
 <meta charset="UTF-8">
 
 <title>INSCRIPTION</title>
-
 </head>
-
  <c:if test="${!empty session}">
 <c:import url="/${deconnexionboutonpage}" var="file" scope="page" />
     ${file}
     </c:if>
+           <c:if test="${!empty session}">
+         <div id="menu">
+<c:import url="/${menupage}" var="file" scope="page" />
+    ${file}
+    </div> 
+    </c:if>
+  
 <body>
+<c:import url="/menu" var="file" scope="page" />
         <form method="post">
         
             <fieldset>
