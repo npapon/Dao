@@ -1,32 +1,28 @@
-import bean.Utilisateur;
-import dao.DAOFactory;
-import dao.UtilisateurDao;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
     public static void main( String[] args ) {
-        // on a un daoFactory qui a l'url,login mot de passe en param
-        // il a chargé le driver
-        DAOFactory daoFactory = DAOFactory.getInstance();
-        Utilisateur utilisateur = new Utilisateur();
 
-        // on instancie utilisateurDaoImpl avec le daoFactory en paramètre qui a
-        // les méthodes CRUD
-        UtilisateurDao utilisateurDao = daoFactory.getUtilisateurDao();
-        // cette méthode initie la connexion avec les paramètres du dao et
-        // execute une requete type select et retourne un utilisateur
-        utilisateur = utilisateurDao.rechercherUtilisateur( "npapon@live.fr" );
-        System.out.println( "mail recherché  " + utilisateur.getEmail() );
-        utilisateur = new Utilisateur();
+        List<Integer> achatsBloquesV2 = new ArrayList<Integer>();
 
-        utilisateur.setEmail( "help10@live.fr" );
-        utilisateur.setLogin( "help10" );
-        utilisateur.setMot_de_passe( "caca" );
-        utilisateur.setNom( "help10" );
+        achatsBloquesV2.add( 1 );
+        achatsBloquesV2.add( 2 );
+        achatsBloquesV2.add( 3 );
+        String listeDesIdentifiantsAchats = "";
 
-        utilisateurDao.creerUtilisateur( utilisateur );
+        for ( int i = 0; i < achatsBloquesV2.size(); i++ ) {
 
-        System.out.print( "utilisateur crééé " + utilisateur.toString() );
+            int identifiantAchat = achatsBloquesV2.get( i );
+            if ( i != achatsBloquesV2.size() - 1 ) {
+                listeDesIdentifiantsAchats += identifiantAchat + ", ";
+            } else {
+                listeDesIdentifiantsAchats += identifiantAchat;
+            }
+        }
 
+        System.out.println( listeDesIdentifiantsAchats );
     }
+
 }

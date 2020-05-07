@@ -88,4 +88,9 @@ public class DAOFactory {
         return menuDaoImpl;
     }
 
+    public AchatDao getAchatDao() {
+        AchatDaoImpl achatDaoImpl = new AchatDaoImpl( this );
+        return achatDaoImpl;
+    }
+
 }

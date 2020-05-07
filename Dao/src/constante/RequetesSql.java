@@ -11,5 +11,7 @@ public class RequetesSql {
     public final static String IMAGEPROFIL_DELETE          = "delete from imageprofil where email = ?";
     public final static String UTILISATEUR_DELETE          = "delete from utilisateur where email = ?";
     public final static String MENU_SELECT                 = "select * from menu where actif ='A' order by ordre asc";
+    public final static String ACHATBLOQUESV2_SELECT       = "select * from baact where INDACHMDD in ('O','N')";
+    public final static String ACHATBLOQUESV2_UPDATE       = "update baact set INDACHMDD = null where IDEACH in (?)";
 
 }

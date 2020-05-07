@@ -25,5 +25,8 @@ public class Adressesinternes {
     public static final String HOME                          = "/WEB-INF/home.jsp";
     public static final String HOME_COURT                    = "home";
     public static final String HOME_DESCRIPTION              = "Homepage";
+    public static final String LIBERERACHATV2                = "/WEB-INF/libererachatv2.jsp";
+    public static final String LIBERERACHATV2_COURT          = "libererachatv2";
+    public static final String LIBERERACHATV2_DESCRIPTION    = "Rend les achats dans V2 à nouveau accessible après avoir été modifié dans V+";
 
 }

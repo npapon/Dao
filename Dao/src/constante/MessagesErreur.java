@@ -6,6 +6,7 @@ public class MessagesErreur {
     public static final String ECHEC_INSERT_UTILISATEUR             = "L'utilisateur n'a pas été inséré en base";
     public static final String ECHEC_INSERT_IMAGEPROFIL             = "L'image de profil n'a pas été inséré en base";
     public static final String ECHEC_UPDATE_IMAGEPROFIL             = "L'image de profil n'a pas été updaté en base";
+    public static final String ECHEC_UPDATE_ACHATSBLOQUESV2         = "Aucun achat bloqué dans V2 n'a été mis à jour";
     public static final String ECHEC_DELETE_IMAGEPROFIL             = "L'image de profil n'a pas été effacé en base";
     public static final String ECHEC_DELETE_UTILISATEUR             = "L'utilisateur n'a pas été effacé en base";
     public static final String ECHEC_RECUPERATION_ID_UTILISATEUR    = "aucun id unique pour l'utilisateur de trouvé car aucune ligne n'a été insérée pour l'utilisateur en base";
