@@ -8,6 +8,6 @@ public interface AchatDao {
 
     List<Achat> rechercherAchatsBloquesV2() throws DAOException;
 
-    void modifierAchatsBloquesV2( List<Achat> achatsBloquesV2, String utilisateur ) throws DAOException;
+    void modifierAchatBloqueV2( Achat achat, String utilisateur ) throws DAOException;
 
 }

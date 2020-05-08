@@ -5,6 +5,7 @@ public class AttributsServlet {
     public static final String DAOFACTORY             = "daofactory";
     public static final String UTILISATEUR            = "utilisateur";
     public static final String IMAGEPROFIL            = "imageprofil";
+    public static final String LISTEACHATSLIBERESV2   = "listeachatsliberesv2";
     public static final String MENU                   = "menu";
     public static final String INSCRIPTIONFORM        = "inscriptionform";
     public static final String SESSIONACTIVE          = "session";

@@ -56,28 +56,16 @@ public class AchatDaoImpl implements AchatDao {
     }
 
     @Override
-    public void modifierAchatsBloquesV2( List<Achat> achatsBloquesV2, String utilisateur ) throws DAOException {
+    public void modifierAchatBloqueV2( Achat achat, String utilisateur ) throws DAOException {
         Connection connexion = null;
         PreparedStatement preparedStatement = null;
 
-        String listeDesIdentifiantsAchats = "";
-
-        for ( int i = 0; i < achatsBloquesV2.size(); i++ ) {
-
-            int identifiantAchat = achatsBloquesV2.get( i ).getId();
-            if ( i != achatsBloquesV2.size() - 1 ) {
-                listeDesIdentifiantsAchats += identifiantAchat + ", ";
-            } else {
-                listeDesIdentifiantsAchats += identifiantAchat;
-            }
-        }
-
-        Object[] modifierAchatsAttributs = { utilisateur, listeDesIdentifiantsAchats };
+        Object[] modifierAchatsAttributs = { utilisateur, achat.getId() };
         try
 
         {
             connexion = daoFactory.getConnection();
-            preparedStatement = DAOUtilitaire.initialisaterRequetePreparee( connexion, RequetesSql.ACHATBLOQUESV2_UPDATE, false,
+            preparedStatement = DAOUtilitaire.initialisaterRequetePreparee( connexion, RequetesSql.ACHATBLOQUEV2_UPDATE, false,
                     modifierAchatsAttributs );
 
             int nombreDeLignesUpdate = preparedStatement.executeUpdate();

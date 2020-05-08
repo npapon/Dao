@@ -2,8 +2,6 @@ package formulaire;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import bean.Achat;
 import dao.AchatDao;
 
@@ -15,11 +13,13 @@ public class AchatForm {
         this.achatDao = achatDao;
     }
 
-    public List<Achat> libererAchatV2( HttpServletRequest request, String utilisateur ) {
+    public List<Achat> libererAchatV2( String utilisateur ) {
 
         List<Achat> achatsBloquesV2 = achatDao.rechercherAchatsBloquesV2();
 
-        achatDao.modifierAchatsBloquesV2( achatsBloquesV2, utilisateur );
+        for ( Achat achat : achatsBloquesV2 ) {
+            achatDao.modifierAchatBloqueV2( achat, utilisateur );
+        }
 
         return achatsBloquesV2;
 

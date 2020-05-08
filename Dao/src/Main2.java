@@ -1,3 +1,4 @@
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -50,6 +51,16 @@ public class Main2 {
             preparedStatement.setString( 2, "lchenu2@gay.com" );
             preparedStatement.setString( 3, "gay" );
             preparedStatement.setString( 4, "chenu" );
+
+            preparedStatement = connection.prepareStatement( "select * from baact where id in (?)" );
+            Array array = connection.createArrayOf( "VARCHAR", new Object[] { "1", "2", "3" } );
+            preparedStatement.setArray( 1, array );
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while ( resultSet.next() ) {
+
+                System.out.print( "fuck" + resultSet.getInt( "IDEACH" ) );
+            }
 
             preparedStatement.executeUpdate();
 

@@ -87,7 +87,7 @@
     <servlet-name>Profil</servlet-name>
     <url-pattern>/profil</url-pattern>
   </servlet-mapping>
-     <servlet>
+  <servlet>
     <description>LibererAchatV2Servlet</description>
     <servlet-name>LibererAchatV2Servlet</servlet-name>
     <servlet-class>servlet.LibererAchatV2Servlet</servlet-class>
@@ -95,6 +95,15 @@
   <servlet-mapping>
     <servlet-name>LibererAchatV2Servlet</servlet-name>
     <url-pattern>/libererachatv2</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description>SynteseScriptAchatLibereV2Servlet</description>
+    <servlet-name>SynteseScriptAchatLibereV2Servlet</servlet-name>
+    <servlet-class>servlet.SynteseScriptAchatLibereV2Servlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SynteseScriptAchatLibereV2Servlet</servlet-name>
+    <url-pattern>/syntesescriptachatliberev2</url-pattern>
   </servlet-mapping>
   <filter>
     <filter-name>RestrictionFilter</filter-name>
@@ -105,6 +114,7 @@
     <url-pattern>/profil</url-pattern>
     <url-pattern>/effacermoncompte</url-pattern>
     <url-pattern>/libererachatv2</url-pattern>
+   <url-pattern>/syntesescriptachatliberev2</url-pattern>
   </filter-mapping>
   <filter>
     <filter-name>Set Character Encoding</filter-name>
