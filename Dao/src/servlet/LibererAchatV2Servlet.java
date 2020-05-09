@@ -43,8 +43,7 @@ public class LibererAchatV2Servlet extends HttpServlet {
         Session sessionActive = (Session) session.getAttribute( AttributsServlet.SESSIONACTIVE );
         List<Achat> achatLiberes = achatForm.libererAchatV2( sessionActive.getLogin() );
         session.setAttribute( AttributsServlet.LISTEACHATSLIBERESV2, achatLiberes );
-        this.getServletContext().getRequestDispatcher( Adressesinternes.SYNTHESE_SCRIPT_LIBERERACHATV2 ).forward( request,
-                response );
+        response.sendRedirect( Adressesinternes.SYNTHESE_SCRIPT_LIBERERACHATV2_COURT );
 
     }
 

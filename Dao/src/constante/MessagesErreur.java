@@ -30,4 +30,6 @@ public class MessagesErreur {
     public static final String TAILLE_FICHIER_TROP_GRANDE           = "Le fichier a une taille trop grande";
     public static final String AUCUN_FICHIER                        = "L'en_tête de la requête POST ne contient aucun fichier";
     public static final String FICHIER_PAS_UNE_IMAGE                = "Le fichier n'est pas une image";
+    public static final String ERREUR_CONFIG_POOL_CONNEXIONS        = "Erreur de configuration du pool de connexions";
+
 }

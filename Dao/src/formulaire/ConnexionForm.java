@@ -116,10 +116,7 @@ public class ConnexionForm {
         } else
 
         {
-            System.out.println( "succes" + imageDao.rechercherImage( email ).getId()
-                    + imageDao.rechercherImage( email ).getEmail() + imageDao.rechercherImage( email ).getEmplacement() );
-            System.out.println( "email suspect" + email );
-            System.out.println( "emplace suspect" + imageDao.rechercherImage( email ).getEmplacement() );
+
             String imageProfilEmplacement = imageDao.rechercherImage( email ).getEmplacement();
             sessionActive.setEmplacementImageProfil( imageProfilEmplacement );
         }

@@ -61,10 +61,10 @@ public class SessionDaoImpl implements SessionDao {
         configurablePasswordEncryptor.setAlgorithm( Cryptage.ALGO_CHIFFREMENT_SHA_256 );
         configurablePasswordEncryptor.setPlainDigest( false );
         if ( session != null && configurablePasswordEncryptor.checkPassword( motDePasse, session.getMot_de_passe() ) ) {
-            System.out.println( "session connectée" );
+
             return session;
         } else {
-            System.out.println( "echec connexion session" );
+
             return null;
         }
     }
@@ -86,7 +86,6 @@ public class SessionDaoImpl implements SessionDao {
         // on replace le curseur au départ avant la première ligne
         resultset.beforeFirst();
 
-        System.out.println( "nombre de lignes " + nombreDeLignes );
         return nombreDeLignes;
 
     }
