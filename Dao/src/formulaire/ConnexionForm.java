@@ -93,7 +93,7 @@ public class ConnexionForm {
         String email = null;
         if ( sessionDao.rechercherSession( login, motdepasse ) == null ) {
             try {
-                throw new FormValidationException( MessagesErreur.MOTDEPASSE_INCORRECT );
+                throw new FormValidationException( MessagesErreur.SESSION_INTROUVABLE );
             } catch ( FormValidationException e ) {
                 System.out.println( e.getMessage() );
 
@@ -125,6 +125,10 @@ public class ConnexionForm {
 
     public String getConnexionAutorisee() {
         return connexionAutorisee;
+    }
+
+    public List<String> getErreurs() {
+        return erreurs;
     }
 
 }

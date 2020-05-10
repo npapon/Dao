@@ -52,6 +52,8 @@ public class InscriptionForm {
             } else {
                 creationAutorisee = MessagesErreur.CREATION_UTILISATEUR_KO;
                 System.out.println( creationAutorisee );
+                return null;
+
             }
 
         } catch ( DAOException e ) {
@@ -114,6 +116,7 @@ public class InscriptionForm {
                 System.out.println( e.getMessage() );
                 erreurs.add(
                         e.getMessage() );
+
             }
 
         } else {
@@ -152,6 +155,22 @@ public class InscriptionForm {
             utilisateur.setMot_de_passe( motdepassecrypte );
         }
 
+    }
+
+    public String getCreationAutorisee() {
+        return creationAutorisee;
+    }
+
+    public void setCreationAutorisee( String creationAutorisee ) {
+        this.creationAutorisee = creationAutorisee;
+    }
+
+    public List<String> getErreurs() {
+        return erreurs;
+    }
+
+    public void setErreurs( List<String> erreurs ) {
+        this.erreurs = erreurs;
     }
 
 }

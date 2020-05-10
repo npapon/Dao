@@ -57,6 +57,14 @@
                 <input type="submit" value="Inscription" class="sansLabel" id="submit" /> 
                 <input type="reset" value="Effacer saisie"  id="reset"/>          
                 <br />
+                        <div class="erreur"><c:out value="${inscriptionform.creationAutorisee}"/>
+                         <br/>
+                         <c:forEach var="entry" items="${inscriptionform.erreurs}" varStatus="status">
+                         <c:out value="${entry}"/>
+                         <br/>
+                         </c:forEach>
+                         </div> 
+                        
                             
             </fieldset>
         </form>  

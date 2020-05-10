@@ -42,7 +42,13 @@
                 <input type="submit" value="Connexion" class="sansLabel" id="submit" /> 
                 <input type="reset" value="Effacer saisie"  id="reset"/>          
                 <br />
-                <div class="erreur"><c:out value="${connexionform.connexionAutorisee}"/></div>
+                <div class="erreur"><c:out value="${connexionform.connexionAutorisee}"/>
+                         <br/>
+                         <c:forEach var="entry" items="${connexionform.erreurs}" varStatus="status">
+                         <c:out value="${entry}"/>
+                         <br/>
+                         </c:forEach>
+                         </div> 
                             
             </fieldset>
         </form>  

@@ -40,9 +40,14 @@ public class InscriptionServlet extends HttpServlet {
         Utilisateur utilisateur = inscriptionForm.inscrireUtilisateur( request );
         HttpSession session = request.getSession();
 
-        session.setAttribute( AttributsServlet.UTILISATEUR, utilisateur );
+        if ( utilisateur != null ) {
+            session.setAttribute( AttributsServlet.UTILISATEUR, utilisateur );
 
-        response.sendRedirect( Adressesinternes.CONNEXION_COURT );
+            response.sendRedirect( Adressesinternes.CONNEXION_COURT );
+        } else {
+            session.setAttribute( AttributsServlet.INSCRIPTIONFORM, inscriptionForm );
+            response.sendRedirect( Adressesinternes.INSCRIPTION_COURT );
+        }
     }
 
 }

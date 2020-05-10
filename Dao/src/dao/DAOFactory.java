@@ -11,6 +11,7 @@ import com.jolbox.bonecp.BoneCPConfig;
 
 import constante.DonneesDeConnexion;
 import constante.MessagesErreur;
+import constante.PoolDeConnexions;
 
 public class DAOFactory {
 
@@ -93,9 +94,9 @@ public class DAOFactory {
             config.setPassword( motdepasse );
             // Paramètrage du pool de connexion
 
-            config.setMinConnectionsPerPartition( 5 );
-            config.setMaxConnectionsPerPartition( 15 );
-            config.setPartitionCount( 2 );
+            config.setMinConnectionsPerPartition( PoolDeConnexions.MIN_CONNEXIONS_PAR_PARTITIONS );
+            config.setMaxConnectionsPerPartition( PoolDeConnexions.MAX_CONNEXIONS_PAR_PARTITIONS );
+            config.setPartitionCount( PoolDeConnexions.NOMBRE_PARTITIONS );
 
             connexionPool = new BoneCP( config );
 
