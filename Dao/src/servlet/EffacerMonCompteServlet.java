@@ -17,7 +17,7 @@ import dao.ImageDao;
 import dao.UtilisateurDao;
 import formulaire.ProfilForm;
 
-@WebServlet( "/EffacerMonCompte" )
+@WebServlet( "/effacermoncompte" )
 public class EffacerMonCompteServlet extends HttpServlet {
 
     private UtilisateurDao utilisateurDao;

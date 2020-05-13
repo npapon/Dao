@@ -18,7 +18,7 @@ import dao.AchatDao;
 import dao.DAOFactory;
 import formulaire.AchatForm;
 
-@WebServlet( "/LibererAchatV2Servlet" )
+@WebServlet( "/libererachatv2" )
 public class LibererAchatV2Servlet extends HttpServlet {
 
     private AchatDao achatDao;

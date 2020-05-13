@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import constante.Adressesinternes;
 
-@WebServlet( "/DeconnexionServlet" )
+@WebServlet( "/deconnexion" )
 public class DeconnexionServlet extends HttpServlet {
 
     protected void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {

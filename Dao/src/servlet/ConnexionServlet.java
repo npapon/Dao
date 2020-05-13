@@ -20,7 +20,7 @@ import dao.ImageDao;
 import dao.SessionDao;
 import formulaire.ConnexionForm;
 
-@WebServlet( "/ConnexionServlet" )
+@WebServlet( "/connexion" )
 public class ConnexionServlet extends HttpServlet {
     private SessionDao sessionDao;
     private ImageDao   imageDao;

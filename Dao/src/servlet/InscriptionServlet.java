@@ -16,7 +16,7 @@ import dao.DAOFactory;
 import dao.UtilisateurDao;
 import formulaire.InscriptionForm;
 
-@WebServlet( "/InscriptionServlet" )
+@WebServlet( "/inscription" )
 public class InscriptionServlet extends HttpServlet {
     private UtilisateurDao utilisateurDao;
 

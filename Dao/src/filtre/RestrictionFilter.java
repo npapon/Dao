@@ -8,6 +8,7 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import constante.Adressesinternes;
 import constante.AttributsServlet;
 
+@WebFilter( urlPatterns = { "/profil", "/effacermoncompte", "/libererachatv2", "/syntesescriptachatliberev2" } )
 public class RestrictionFilter implements Filter {
 
     public void init( FilterConfig config ) throws ServletException {

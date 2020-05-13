@@ -13,7 +13,7 @@ import constante.Adressesinternes;
 /**
  * Servlet implementation class SynteseScriptAchatLibereV2Servlet
  */
-@WebServlet( "/SynteseScriptAchatLibereV2Servlet" )
+@WebServlet( "/syntesescriptachatliberev2" )
 public class SynteseScriptAchatLibereV2Servlet extends HttpServlet {
 
     protected void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {

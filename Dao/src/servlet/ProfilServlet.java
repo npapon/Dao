@@ -3,6 +3,7 @@ package servlet;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +21,9 @@ import dao.ImageDao;
 import dao.UtilisateurDao;
 import formulaire.ProfilForm;
 
-@WebServlet( "/ProfilServlet" )
+@WebServlet( "/profil" )
+@MultipartConfig( location = "C:\\Users\\npapo\\git\\Dao\\Dao", maxFileSize = 10485760, maxRequestSize = 52428800, fileSizeThreshold = 1048576 )
+
 public class ProfilServlet extends HttpServlet {
 
     public ImageDao       imageDao;

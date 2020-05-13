@@ -13,7 +13,7 @@ import constante.Adressesinternes;
 import constante.AttributsServlet;
 import constante.RepertoiresIcones;
 
-@WebServlet( "/DeconnexionBoutonServlet" )
+@WebServlet( "/deconnexionbouton" )
 public class DeconnexionBoutonServlet extends HttpServlet {
 
     protected void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {

@@ -16,7 +16,7 @@ import constante.AttributsServlet;
 import dao.DAOFactory;
 import dao.MenuDao;
 
-@WebServlet( "/MenuServlet" )
+@WebServlet( "/menu" )
 public class MenuServlet extends HttpServlet {
 
     public MenuDao menuDao;
